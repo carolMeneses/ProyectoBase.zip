@@ -30,9 +30,9 @@ public abstract class ServiciosAlquiler {
     /**
      * @obj Consultar los items que tenga en su poder un cliente
      * @param idcliente identificador del cliente
-     * @return el litado de detalle de los items rentados por el cliente
+     * @return el listado de detalle de los items rentados por el cliente
      * identificado con 'idcliente'
-     * @throws ExcepcionServiciosAlquiler si el cliente no esta registrado
+     * @throws ExcepcionServiciosAlquiler si el cliente no está registrado
      */
     public abstract List<ItemRentado> consultarItemsCliente(long idcliente) throws ExcepcionServiciosAlquiler;
 
@@ -49,11 +49,11 @@ public abstract class ServiciosAlquiler {
     /**
      * @obj consultar el valor de la multa del alquiler, dado el id del item
      * alquilado hasta la fecha dada como parametro
-     * @param iditem el codigo del item alquilado
-     * @param fechaDevolucion la fecha de devolucion del item
-     * @return la multa en funcion del numero de dias de retraso. Si el item se
-     * entrega en la fecha exacta de entrega, o antes, la multa sera cero.
-     * @throws ExcepcionServiciosAlquiler si el item no existe o no esta
+     * @param iditem el código del item alquilado
+     * @param fechaDevolucion la fecha de devolución del item
+     * @return la multa en función del número de días de retraso. Si el item se
+     * entrega en la fecha exacta de entrega, o antes, la multa será cero.
+     * @throws ExcepcionServiciosAlquiler si el item no existe o no está
      * actualmente alquilado
      */
     public abstract long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler;
@@ -63,16 +63,16 @@ public abstract class ServiciosAlquiler {
     public abstract List<TipoItem> consultarTiposItem() throws ExcepcionServiciosAlquiler;
 
     /**
-     * @obj rejistrar el alkiler de un item
+     * @obj registrar el alquiler de un item
      * @pre numdias >=1
-     * @param date fecha de rejistro del alquiler
-     * @param docu identificacion de a quien se le cargara el alquiler
+     * @param date fecha de registro del alquiler
+     * @param docu identificación de a quien se le cargara el alquiler
      * @param item el identificador del item a alquilar
-     * @param numdias el numero de dias que se le prestara el item
+     * @param numdias el número de días que se le prestara el item
      * @pos el item ya no debe estar disponible, y debe estar asignado al
      * cliente
-     * @throws ExcepcionXX si el identificador no corresponde con un item, o si
-     * el mismo ya esta alquilado
+     * @throws ExcepcionXX si el identificador no corresponde con un item, o sí
+     * el mismo ya está alquilado
      */
     public abstract void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler;
 
@@ -87,9 +87,9 @@ public abstract class ServiciosAlquiler {
     public abstract void registrarCliente(Cliente p) throws ExcepcionServiciosAlquiler;
 
     /**
-     * @obj registrar la devolucion de un item
+     * @obj registrar la devolución de un item
      * @param iditem el item a regresar
-     * @pos el item se enuentra disponible para el alquiler y el usuario ya no
+     * @pos el item se encuentra disponible para el alquiler y el usuario ya no
      * lo tiene dentro de sus elementos rentados
      * @throws ExcepcionServiciosAlquiler si el item no existe o no se encuentra
      * alquilado
@@ -99,10 +99,10 @@ public abstract class ServiciosAlquiler {
     /**
      * @obj consultar el costo del alquiler de un item
      * @pre numdias >=1
-     * @param iditem el codigo del item
-     * @param numdias el numero de dias que se va a alquilar
+     * @param iditem el código del item
+     * @param numdias el número de días que se va a alquilar
      * @return el costo total del alquiler, teniendo en cuesta el costo diario y
-     * el numeo de dias del alquiler
+     * el número de días del alquiler
      * @throws ExcepcionServiciosAlquiler si el identificador del item no existe
      */
     public abstract long consultarCostoAlquiler(int iditem, int numdias) throws ExcepcionServiciosAlquiler;
