@@ -50,7 +50,7 @@ public class ClientesTest {
           
     }
     
-    @Test
+
     public void registroCliente2() throws ExcepcionServiciosAlquiler{
         ServiciosAlquiler servicio=ServiciosAlquilerItemsStub.getInstance();
         servicio.registrarCliente(new Cliente("Paula Pinzon",1019108825,"123456","calle 167","paula@gmail.com"));

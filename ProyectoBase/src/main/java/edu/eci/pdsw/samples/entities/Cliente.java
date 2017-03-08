@@ -15,13 +15,13 @@ import java.util.LinkedList;
  */
 public class Cliente implements Serializable{
     
-    private String nombre;
+    private String nombre=null;
     private long documento;
     private String telefono;
     private String direccion;
     private String email;
-    private boolean vetado;
-    private ArrayList<ItemRentado> rentados; 
+    private boolean vetado=true;
+    private ArrayList<ItemRentado> rentados=null; 
 
     public Cliente() {
     }
