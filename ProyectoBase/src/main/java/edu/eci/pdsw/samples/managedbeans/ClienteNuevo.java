@@ -8,6 +8,7 @@ package edu.eci.pdsw.samples.managedbeans;
 import edu.eci.pdsw.samples.entities.Cliente;
 import edu.eci.pdsw.samples.entities.ItemRentado;
 import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -15,7 +16,7 @@ import javax.faces.bean.SessionScoped;
  *
  * @author 2095957
  */
-@ManagedBean(name = "cliente")
+@ManagedBean(name = "beenNuevoCliente")
 @SessionScoped
 public class ClienteNuevo {
 
@@ -26,6 +27,7 @@ public class ClienteNuevo {
     String email;
    
     Cliente ClienteNuevo;
+    ArrayList<Cliente> acumulados= new ArrayList<>();
     
     public ClienteNuevo(){
     nombre="";
@@ -40,7 +42,7 @@ public class ClienteNuevo {
 
     public void adicionarCliente() {
        ClienteNuevo= new Cliente(nombre, documento, telefono, direccion, email);
-
+       acumulados.add(ClienteNuevo);
     }
 
     public String getNombre() {
@@ -93,6 +95,9 @@ public class ClienteNuevo {
 
     public ArrayList<ItemRentado> getRentados() {
         return ClienteNuevo.getRentados();
+    }
+    public List<Cliente> getLAcumulados() {
+        return acumulados;
     }
 
 

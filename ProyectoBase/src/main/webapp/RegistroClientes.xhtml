@@ -7,9 +7,9 @@
     <h:body>
         <h:form id="formularioCliente">
             <h3>Nombre</h3>
-            <h:inputText title="Nombre" value="#{cliente.nombre}"></h:inputText>
+            <h:inputText title="Nombre" value="#{NuevoCliente.nombre}"></h:inputText>
             <h3>Identificación</h3>
-            <h:inputText title="Identificacion" value="#{NuevoCliente.documento}"></h:inputText>
+            <h:inputText  title="Identificacion" value="#{NuevoCliente.documento}"></h:inputText>
             <h3>Teléfono</h3>
             <h:inputText title="Teléfono" value="#{NuevoCliente.telefono}"></h:inputText>
             <h3>Dirección</h3>
@@ -18,6 +18,32 @@
             <h:inputText title="E-mail" value="#{NuevoCliente.email}"></h:inputText>
              <p:commandButton   value="Add client"  actionListener="#{NuevoCliente.adicionarCliente}" update="formularioCliente" >
             </p:commandButton>
+            
+            
+            <p:separator>
+                <p:dataTable id="formularioCliente" var="informacion"  value="#{NuevoCliente.acumulados}">
+
+                    <f:facet name="header">
+                        Lista Clientes
+                    </f:facet>
+                    <p:column headerText="Nombre">
+                        <h:outputLabel value="#{informacion.ClienteNuevo}"></h:outputLabel>
+                    </p:column>                        
+                   <p:column headerText="Identificación">
+                        <h:outputLabel value="#{informacion.canti}"></h:outputLabel>
+                    </p:column> 
+                    <p:column headerText="Telefono">
+                        <h:outputLabel value="#{informacion.telefono}"></h:outputLabel>                        
+                    </p:column>
+                    <p:column headerText="Dirección">
+                        <h:outputLabel value="#{informacion.direccion}"></h:outputLabel>                        
+                    </p:column>
+                    <p:column headerText="Email">
+                        <h:outputLabel value="#{informacion.email}"></h:outputLabel>                        
+                    </p:column>
+                </p:dataTable>
+            </p:separator>
+
         </h:form>  
     </h:body>
 </html>

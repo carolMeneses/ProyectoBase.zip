@@ -15,7 +15,7 @@ import java.util.LinkedList;
  */
 public class Cliente implements Serializable{
     
-    private String nombre=null;
+    private String nombre;
     private long documento;
     private String telefono;
     private String direccion;
