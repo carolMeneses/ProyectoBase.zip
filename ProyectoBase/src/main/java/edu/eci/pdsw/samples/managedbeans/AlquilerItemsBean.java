@@ -7,6 +7,7 @@ package edu.eci.pdsw.samples.managedbeans;
 
 import edu.eci.pdsw.samples.entities.Cliente;
 import edu.eci.pdsw.samples.entities.ItemRentado;
+import edu.eci.pdsw.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.pdsw.samples.services.ServiciosAlquiler;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class AlquilerItemsBean implements Serializable {
 
-    String nombre;
+    String nombre ;
     long documento;
     String telefono;
     String direccion;
@@ -43,22 +44,24 @@ public class AlquilerItemsBean implements Serializable {
 
     }
 
-    public void adicionarCliente() {
+    public void adicionarCliente() throws ExcepcionServiciosAlquiler {
         ClienteNuevo = new Cliente(nombre, documento, telefono, direccion, email);
         acumulados.add(ClienteNuevo);
-        System.out.println(getNombre());
+        sp.registrarCliente(ClienteNuevo);
+        
+        
     }
 
     public String getNombre() {
-        return ClienteNuevo.getNombre();
+        return nombre;
     }
 
-    public void setNomb(String nomb) {
-        this.nombre = nomb;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public long getDocumento() {
-        return ClienteNuevo.getDocumento();
+        return documento;
     }
 
     public void setDocumento(long documento) {
@@ -66,7 +69,7 @@ public class AlquilerItemsBean implements Serializable {
     }
 
     public String getTelefono() {
-        return ClienteNuevo.getTelefono();
+        return telefono;
     }
 
     public void setTelefono(String telefono) {
@@ -74,7 +77,7 @@ public class AlquilerItemsBean implements Serializable {
     }
 
     public String getDireccion() {
-        return ClienteNuevo.getDireccion();
+        return direccion;
     }
 
     public void setDireccion(String direccion) {
@@ -82,23 +85,35 @@ public class AlquilerItemsBean implements Serializable {
     }
 
     public String getEmail() {
-        return ClienteNuevo.getEmail();
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public boolean isVetado() {
-        return ClienteNuevo.isVetado();
+    public Cliente getClienteNuevo() {
+        return ClienteNuevo;
     }
 
-    public ArrayList<ItemRentado> getRentados() {
-        return ClienteNuevo.getRentados();
+    public void setClienteNuevo(Cliente ClienteNuevo) {
+        this.ClienteNuevo = ClienteNuevo;
     }
 
-    public List<Cliente> getAcumulados() {
+    public ArrayList<Cliente> getAcumulados() {
         return acumulados;
     }
 
+    public void setAcumulados(ArrayList<Cliente> acumulados) {
+        this.acumulados = acumulados;
+    }
+
+    public ServiciosAlquiler getSp() {
+        return sp;
+    }
+
+    public void setSp(ServiciosAlquiler sp) {
+        this.sp = sp;
+    }
+    
 }
