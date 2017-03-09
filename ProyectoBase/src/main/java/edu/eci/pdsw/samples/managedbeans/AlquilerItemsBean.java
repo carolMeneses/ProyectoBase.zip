@@ -28,9 +28,10 @@ public class AlquilerItemsBean implements Serializable {
     String telefono;
     String direccion;
     String email;
-
+    int multa;
     Cliente ClienteNuevo;
     ArrayList<Cliente> acumulados = new ArrayList<>();
+    List<ItemRentado> items=null;
 
     ServiciosAlquiler sp = ServiciosAlquiler.getInstance();
 
@@ -51,7 +52,13 @@ public class AlquilerItemsBean implements Serializable {
         
         
     }
-
+    public void adicionarAlquiler() throws ExcepcionServiciosAlquiler {
+        ClienteNuevo = new Cliente(nombre, documento, telefono, direccion, email);
+        acumulados.add(ClienteNuevo);
+        sp.registrarCliente(ClienteNuevo);
+        
+        
+    }
     public String getNombre() {
         return nombre;
     }
@@ -70,6 +77,11 @@ public class AlquilerItemsBean implements Serializable {
 
     public String getTelefono() {
         return telefono;
+    }
+
+    public List<ItemRentado> getItems() throws ExcepcionServiciosAlquiler {
+        items=sp.consultarItemsCliente(getDocumento());
+        return items;
     }
 
     public void setTelefono(String telefono) {
@@ -114,6 +126,12 @@ public class AlquilerItemsBean implements Serializable {
 
     public void setSp(ServiciosAlquiler sp) {
         this.sp = sp;
+    }
+    public void getMulta(){
+    /**
+     * Pendiente
+     */
+    
     }
     
 }
