@@ -7,30 +7,30 @@
     <h:body>
         <h:form id="formularioCliente">
             <h3>Nombre</h3>
-            <h:inputText title="Nombre" value="#{NuevoCliente.nombre}"></h:inputText>
+            <h:inputText title="Nombre" value="#{AlquilerItems.nombre}"></h:inputText>
             <h3>Identificación</h3>
-            <h:inputText  title="Identificacion" value="#{NuevoCliente.documento}"></h:inputText>
+            <h:inputText  title="Identificacion" value="#{AlquilerItems.documento}"></h:inputText>
             <h3>Teléfono</h3>
-            <h:inputText title="Teléfono" value="#{NuevoCliente.telefono}"></h:inputText>
+            <h:inputText title="Teléfono" value="#{AlquilerItems.telefono}"></h:inputText>
             <h3>Dirección</h3>
-            <h:inputText title="Dirección" value="#{NuevoCliente.direccion}"></h:inputText>
+            <h:inputText title="Dirección" value="#{AlquilerItems.direccion}"></h:inputText>
             <h3>Email</h3>
-            <h:inputText title="E-mail" value="#{NuevoCliente.email}"></h:inputText>
-             <p:commandButton   value="Add client"  actionListener="#{NuevoCliente.adicionarCliente}" update="formularioCliente" >
+            <h:inputText title="E-mail" value="#{AlquilerItems.email}"></h:inputText>
+             <p:commandButton   value="Add client"  actionListener="#{AlquilerItems.adicionarCliente}" update="formularioCliente" >
             </p:commandButton>
             
             
             <p:separator>
-                <p:dataTable id="formularioCliente" var="informacion"  value="#{NuevoCliente.acumulados}">
+                <p:dataTable id="formularioCliente" var="informacion"  value="#{AlquilerItems.acumulados}">
 
                     <f:facet name="header">
                         Lista Clientes
                     </f:facet>
                     <p:column headerText="Nombre">
-                        <h:outputLabel value="#{informacion.ClienteNuevo}"></h:outputLabel>
+                        <h:outputLabel value="#{informacion.nombre}"></h:outputLabel>
                     </p:column>                        
                    <p:column headerText="Identificación">
-                        <h:outputLabel value="#{informacion.canti}"></h:outputLabel>
+                       <h:outputLabel value="#{informacion.documento}"></h:outputLabel>
                     </p:column> 
                     <p:column headerText="Telefono">
                         <h:outputLabel value="#{informacion.telefono}"></h:outputLabel>                        

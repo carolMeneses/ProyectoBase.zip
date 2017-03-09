@@ -7,6 +7,7 @@ package edu.eci.pdsw.samples.managedbeans;
 
 import edu.eci.pdsw.samples.entities.Cliente;
 import edu.eci.pdsw.samples.entities.ItemRentado;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -16,9 +17,9 @@ import javax.faces.bean.SessionScoped;
  *
  * @author 2095957
  */
-@ManagedBean(name = "beenNuevoCliente")
+@ManagedBean(name = "AlquilerItems")
 @SessionScoped
-public class ClienteNuevo {
+public class ClienteNuevo implements Serializable{
 
     String nombre;
     long documento;
@@ -43,6 +44,7 @@ public class ClienteNuevo {
     public void adicionarCliente() {
        ClienteNuevo= new Cliente(nombre, documento, telefono, direccion, email);
        acumulados.add(ClienteNuevo);
+        System.out.println(getNombre());
     }
 
     public String getNombre() {
@@ -96,7 +98,7 @@ public class ClienteNuevo {
     public ArrayList<ItemRentado> getRentados() {
         return ClienteNuevo.getRentados();
     }
-    public List<Cliente> getLAcumulados() {
+    public List<Cliente> getAcumulados() {
         return acumulados;
     }
 
