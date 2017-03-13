@@ -6,9 +6,11 @@
 package edu.eci.pdsw.samples.managedbeans;
 
 import edu.eci.pdsw.samples.entities.Cliente;
+import edu.eci.pdsw.samples.entities.Item;
 import edu.eci.pdsw.samples.entities.ItemRentado;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.pdsw.samples.services.ServiciosAlquiler;
+import edu.eci.pdsw.samples.services.ServiciosAlquilerItemsStub;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +32,7 @@ public class AlquilerItemsBean implements Serializable {
     String email;
     int multa;
     Cliente ClienteNuevo;
-    ArrayList<Cliente> acumulados = new ArrayList<>();
-    List<ItemRentado> items=null;
-
+    List<ItemRentado> items;    
     ServiciosAlquiler sp = ServiciosAlquiler.getInstance();
 
     public AlquilerItemsBean() {
@@ -47,18 +47,15 @@ public class AlquilerItemsBean implements Serializable {
 
     public void adicionarCliente() throws ExcepcionServiciosAlquiler {
         ClienteNuevo = new Cliente(nombre, documento, telefono, direccion, email);
-        acumulados.add(ClienteNuevo);
         sp.registrarCliente(ClienteNuevo);
-        
-        
     }
+    
     public void adicionarAlquiler() throws ExcepcionServiciosAlquiler {
         ClienteNuevo = new Cliente(nombre, documento, telefono, direccion, email);
-        acumulados.add(ClienteNuevo);
         sp.registrarCliente(ClienteNuevo);
-        
-        
     }
+    
+    
     public String getNombre() {
         return nombre;
     }
@@ -81,7 +78,9 @@ public class AlquilerItemsBean implements Serializable {
 
     public List<ItemRentado> getItems() throws ExcepcionServiciosAlquiler {
         items=sp.consultarItemsCliente(getDocumento());
+        //System.out.println(items);
         return items;
+        
     }
 
     public void setTelefono(String telefono) {
@@ -111,15 +110,7 @@ public class AlquilerItemsBean implements Serializable {
     public void setClienteNuevo(Cliente ClienteNuevo) {
         this.ClienteNuevo = ClienteNuevo;
     }
-
-    public ArrayList<Cliente> getAcumulados() {
-        return acumulados;
-    }
-
-    public void setAcumulados(ArrayList<Cliente> acumulados) {
-        this.acumulados = acumulados;
-    }
-
+    
     public ServiciosAlquiler getSp() {
         return sp;
     }
@@ -132,6 +123,10 @@ public class AlquilerItemsBean implements Serializable {
      * Pendiente
      */
     
+    }
+    
+     public List<Cliente> getClientesExistentes() throws ExcepcionServiciosAlquiler {
+        return sp.consultarClientes();
     }
     
 }
