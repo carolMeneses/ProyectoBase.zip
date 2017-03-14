@@ -5,29 +5,25 @@
         <h:head></h:head>
     <h:body>
        <h:form id="formularioItem">
-           
-           <p:dataTable id="formularioCliente" var="informacionItem"  value="#{AlquilerItems.items}">
+          <h2>Registro del Alquiler</h2>
+            <hr/>
 
-                    <f:facet name="header">
-                        ListaItems
-                    </f:facet>
-                    <p:column headerText="Tipo">
-                        <h:outputLabel value="#{informacionItem.item.tipo}"></h:outputLabel>
-                    </p:column>                        
-                   <p:column headerText="nombre">
-                       <h:outputLabel value="#{informacionItem.item.nombre}"></h:outputLabel>
-                    </p:column> 
-                    <p:column headerText="Multa">
-                        <h:outputLabel value="#{informacion.telefono}"></h:outputLabel>                        
-                    </p:column>
-                    <p:column headerText="Valor de la recta">
-                        <h:outputLabel value="#{informacionItem.item.tarifaxDia}"></h:outputLabel>                        
-                    </p:column>
-                    <f:facet name="footer">                        
-                        <p:commandButton update=":formularioItem" value="Regresar" action="RegistroClientes" immediate="true"/>                                        
-                    </f:facet>
-                    
-                </p:dataTable>
+            <h:outputLabel for="Date" value="Date: " />
+            <h:inputText id="date" value="#{AlquilerItems.date}" required="true" />
+
+            <h:outputLabel for="Identificacion" value="Identificacion: " />
+            <h:inputText  id="Identificacion" value="#{AlquilerItems.documento}" required="true"></h:inputText>
+
+            <h:outputLabel for="IdItem" value="Id Item: " />
+            <h:inputText id="id" value="#{AlquilerItems.id}" required="true"></h:inputText>
+
+            <h:outputLabel for="Dias" value="Numero de Dias: " />
+            <h:inputText id="Dias" value="#{AlquilerItems.numDias}" required="true"></h:inputText>
+
+            
+            <p:commandButton value="Registrar" actionListener="#{AlquilerItems.adicionarAlquiler()}" update="formularioItem" />
+            <hr/>-->
+
         </h:form>  
 
     </h:body>

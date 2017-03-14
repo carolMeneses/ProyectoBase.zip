@@ -10,16 +10,15 @@ import edu.eci.pdsw.samples.entities.Item;
 import edu.eci.pdsw.samples.entities.ItemRentado;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.pdsw.samples.services.ServiciosAlquiler;
-import edu.eci.pdsw.samples.services.ServiciosAlquilerItemsStub;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 /**
  *
- * @author 2106913
+ * @Meneses-Pinzon
  */
 @ManagedBean(name = "AlquilerItems")
 @SessionScoped
@@ -32,17 +31,25 @@ public class AlquilerItemsBean implements Serializable {
     String email;
     int multa;
     Cliente ClienteNuevo;
+    ItemRentado nuevaRenta;
+    List<Item> itemC;
     List<ItemRentado> items;    
+    int id;
     ServiciosAlquiler sp = ServiciosAlquiler.getInstance();
-
+    Item i;
+    int numDias;
+    Date date;
     public AlquilerItemsBean() {
         nombre = "";
         documento = 0;
         telefono = "";
         direccion = "";
         email = "";
+        id=0;
         ClienteNuevo = new Cliente(nombre, documento, telefono, direccion, email);
-
+        itemC=sp.consultarItemsDisponibles();
+        i=itemC.get(0);
+        numDias=0;
     }
 
     public void adicionarCliente() throws ExcepcionServiciosAlquiler {
@@ -51,8 +58,40 @@ public class AlquilerItemsBean implements Serializable {
     }
     
     public void adicionarAlquiler() throws ExcepcionServiciosAlquiler {
-        ClienteNuevo = new Cliente(nombre, documento, telefono, direccion, email);
-        sp.registrarCliente(ClienteNuevo);
+        i=sp.consultarItem(id);
+        sp.registrarAlquilerCliente((java.sql.Date) date, documento,i,numDias);
+    }
+
+    public Item getI() {
+        return i;
+    }
+
+    public void setI(Item i) {
+        this.i = i;
+    }
+
+    public int getNumDias() {
+        return numDias;
+    }
+
+    public void setNumDias(int numDias) {
+        this.numDias = numDias;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     
