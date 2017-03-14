@@ -8,21 +8,20 @@
           <h2>Registro del Alquiler</h2>
             <hr/>
 
-            <h:outputLabel for="Date" value="Date: " />
-            <h:inputText id="date" value="#{AlquilerItems.date}" required="true" />
-
-            <h:outputLabel for="Identificacion" value="Identificacion: " />
-            <h:inputText  id="Identificacion" value="#{AlquilerItems.documento}" required="true"></h:inputText>
-
+            
+         
             <h:outputLabel for="IdItem" value="Id Item: " />
             <h:inputText id="id" value="#{AlquilerItems.id}" required="true"></h:inputText>
 
             <h:outputLabel for="Dias" value="Numero de Dias: " />
             <h:inputText id="Dias" value="#{AlquilerItems.numDias}" required="true"></h:inputText>
-
-            
-            <p:commandButton value="Registrar" actionListener="#{AlquilerItems.adicionarAlquiler()}" update="formularioItem" />
-            <hr/>-->
+            <br/>
+            <h2>Costo Alquiler</h2>
+            <br/>
+            <h:outputText value="#{AlquilerItems.totalAlquiler}" />
+                          
+            <p:commandButton value="Registrar" actionListener="#{AlquilerItems.adicionarAlquiler}" update="formularioItem" />
+            <hr/>
 
         </h:form>  
 

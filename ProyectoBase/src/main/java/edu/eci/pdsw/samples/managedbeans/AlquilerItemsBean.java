@@ -29,7 +29,7 @@ public class AlquilerItemsBean implements Serializable {
     String telefono;
     String direccion;
     String email;
-    int multa;
+    long totalAlquiler;
     Cliente ClienteNuevo;
     ItemRentado nuevaRenta;
     List<Item> itemC;
@@ -39,6 +39,7 @@ public class AlquilerItemsBean implements Serializable {
     Item i;
     int numDias;
     Date date;
+    
     public AlquilerItemsBean() {
         nombre = "";
         documento = 0;
@@ -50,16 +51,41 @@ public class AlquilerItemsBean implements Serializable {
         itemC=sp.consultarItemsDisponibles();
         i=itemC.get(0);
         numDias=0;
+        date=new java.util.Date(); 
+        totalAlquiler=0;
     }
 
+    public long getTotalAlquiler() {
+        return totalAlquiler;
+    }
+    public void setTotalAlquiler() {
+        totalAlquiler=(i.getTarifaxDia()*numDias);
+    }
+   
+
     public void adicionarCliente() throws ExcepcionServiciosAlquiler {
+       
         ClienteNuevo = new Cliente(nombre, documento, telefono, direccion, email);
         sp.registrarCliente(ClienteNuevo);
     }
     
     public void adicionarAlquiler() throws ExcepcionServiciosAlquiler {
-        i=sp.consultarItem(id);
+         
+         i=sp.consultarItem(id);
+         System.out.println(id);
+         setTotalAlquiler();
+        System.out.println(numDias);
         sp.registrarAlquilerCliente((java.sql.Date) date, documento,i,numDias);
+       
+        System.out.println(documento);
+        System.out.println(i);
+        System.out.println(numDias);
+        System.out.println(totalAlquiler);
+        
+        
+        
+        
+        
     }
 
     public Item getI() {
