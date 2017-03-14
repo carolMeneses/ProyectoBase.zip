@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,7 +34,7 @@ public class ServiciosAlquilerItemsStub extends ServiciosAlquiler implements Ser
 //          IDItem x IDCliente
     private final Map<Integer, Long> mapaPrestamosPorIdCliente;
 
-    public ServiciosAlquilerItemsStub() {
+    public ServiciosAlquilerItemsStub(){
         clientes = new HashMap<>();
         itemsDisponibles = new HashMap<>();
         itemsrentados = new HashMap<>();
@@ -214,45 +216,52 @@ public class ServiciosAlquilerItemsStub extends ServiciosAlquiler implements Ser
         return MULTA_DIARIA;
     }
 
-    private void poblar() {
+    private void poblar()  {
 
-        TipoItem ti1 = new TipoItem(1, "Video");
-        TipoItem ti2 = new TipoItem(2, "Juego");
-        TipoItem ti3 = new TipoItem(3, "Musica");
-        tipositems.put(1, ti1);
-        tipositems.put(2, ti2);
-        tipositems.put(3, ti3);
-
-        Item i1 = new Item(ti1, 1, "Los 4 Fantasticos", "Los 4 Fantásticos  es una película de superhéroes  basada en la serie de cómic homónima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");
-        Item i2 = new Item(ti2, 2, "Halo 3", "Halo 3 es un videojuego de disparos en primera persona desarrollado por Bungie Studios.", java.sql.Date.valueOf("2007-09-08"), 3000, "DVD", "Shooter");
-        Item i3 = new Item(ti3, 3, "Thriller", "Thriller es una canción interpretada por el cantante estadounidense Michael Jackson, compuesta por Rod Temperton y producida por Quincy Jones.", java.sql.Date.valueOf("1984-01-11"), 2000, "DVD", "Pop");
-        Item i4 = new Item(ti1, 4, "Los 4 Fantasticos", "Los 4 Fantásticos  es una película de superhéroes  basada en la serie de cómic homónima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");
-        Item i5 = new Item(ti2, 5, "Halo 3", "Halo 3 es un videojuego de disparos en primera persona desarrollado por Bungie Studios.", java.sql.Date.valueOf("2007-09-08"), 3000, "DVD", "Shooter");
-        Item i6 = new Item(ti3, 6, "Thriller", "Thriller es una canción interpretada por el cantante estadounidense Michael Jackson, compuesta por Rod Temperton y producida por Quincy Jones.", java.sql.Date.valueOf("1984-01-11"), 2000, "DVD", "Pop");
-        //items.put(1, i1);
-        //items.put(2, i2);
-        //items.put(3, i3);
-        itemsDisponibles.put(4, i4);
-        itemsDisponibles.put(5, i5);
-        itemsDisponibles.put(6, i6);
-
-        ItemRentado ir1 = new ItemRentado(i1, java.sql.Date.valueOf("2017-01-01"), java.sql.Date.valueOf("2017-03-12"));
-        ItemRentado ir2 = new ItemRentado(i2, java.sql.Date.valueOf("2017-01-04"), java.sql.Date.valueOf("2017-04-7"));
-        ItemRentado ir3 = new ItemRentado(i1, java.sql.Date.valueOf("2017-01-07"), java.sql.Date.valueOf("2017-07-12"));
-
-        ArrayList<ItemRentado> list1 = new ArrayList<>();
-        list1.add(ir1);
-        ArrayList<ItemRentado> list2 = new ArrayList<>();
-        list2.add(ir2);
-        ArrayList<ItemRentado> list3 = new ArrayList<>();
-        list3.add(ir3);
-
-        Cliente c1 = new Cliente("Oscar Alba", 1026585664, "6788952", "KRA 109#34-C30", "oscar@hotmail.com", false, list1);
-        Cliente c2 = new Cliente("Carlos Ramirez", 1026585663, "6584562", "KRA 59#27-a22", "carlos@hotmail.com", false, list2);
-        Cliente c3 = new Cliente("Ricardo Pinto", 1026585669, "4457863", "KRA 103#94-a77", "ricardo@hotmail.com", false, list3);
-        clientes.put(c1.getDocumento(), c1);
-        clientes.put(c2.getDocumento(), c2);
-        clientes.put(c3.getDocumento(), c3);
+        try {
+            TipoItem ti1 = new TipoItem(1, "Video");
+            TipoItem ti2 = new TipoItem(2, "Juego");
+            TipoItem ti3 = new TipoItem(3, "Musica");
+            tipositems.put(1, ti1);
+            tipositems.put(2, ti2);
+            tipositems.put(3, ti3);
+            
+            Item i1 = new Item(ti1, 1, "Los 4 Fantasticos", "Los 4 Fantásticos  es una película de superhéroes  basada en la serie de cómic homónima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");
+            Item i2 = new Item(ti2, 2, "Halo 3", "Halo 3 es un videojuego de disparos en primera persona desarrollado por Bungie Studios.", java.sql.Date.valueOf("2007-09-08"), 3000, "DVD", "Shooter");
+            Item i3 = new Item(ti3, 3, "Thriller", "Thriller es una canción interpretada por el cantante estadounidense Michael Jackson, compuesta por Rod Temperton y producida por Quincy Jones.", java.sql.Date.valueOf("1984-01-11"), 2000, "DVD", "Pop");
+            Item i4 = new Item(ti1, 4, "Los 4 Fantasticos", "Los 4 Fantásticos  es una película de superhéroes  basada en la serie de cómic homónima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");
+            Item i5 = new Item(ti2, 5, "Halo 3", "Halo 3 es un videojuego de disparos en primera persona desarrollado por Bungie Studios.", java.sql.Date.valueOf("2007-09-08"), 3000, "DVD", "Shooter");
+            Item i6 = new Item(ti3, 6, "Thriller", "Thriller es una canción interpretada por el cantante estadounidense Michael Jackson, compuesta por Rod Temperton y producida por Quincy Jones.", java.sql.Date.valueOf("1984-01-11"), 2000, "DVD", "Pop");
+            registrarItem(i4);
+            registrarItem(i5);
+            registrarItem(i6);
+            //items.put(1, i1);
+            //items.put(2, i2);
+            //items.put(3, i3);
+            //  itemsDisponibles.put(4, i4);
+            //itemsDisponibles.put(5, i5);
+            //  itemsDisponibles.put(6, i6);
+            
+            ItemRentado ir1 = new ItemRentado(i1, java.sql.Date.valueOf("2017-01-01"), java.sql.Date.valueOf("2017-03-12"));
+            ItemRentado ir2 = new ItemRentado(i2, java.sql.Date.valueOf("2017-01-04"), java.sql.Date.valueOf("2017-04-7"));
+            ItemRentado ir3 = new ItemRentado(i3, java.sql.Date.valueOf("2017-01-07"), java.sql.Date.valueOf("2017-07-12"));
+            
+            ArrayList<ItemRentado> list1 = new ArrayList<>();
+            list1.add(ir1);
+            ArrayList<ItemRentado> list2 = new ArrayList<>();
+            list2.add(ir2);
+            ArrayList<ItemRentado> list3 = new ArrayList<>();
+            list3.add(ir3);
+            
+            Cliente c1 = new Cliente("Oscar Alba", 1026585664, "6788952", "KRA 109#34-C30", "oscar@hotmail.com", false, list1);
+            Cliente c2 = new Cliente("Carlos Ramirez", 1026585663, "6584562", "KRA 59#27-a22", "carlos@hotmail.com", false, list2);
+            Cliente c3 = new Cliente("Ricardo Pinto", 1026585669, "4457863", "KRA 103#94-a77", "ricardo@hotmail.com", false, list3);
+            clientes.put(c1.getDocumento(), c1);
+            clientes.put(c2.getDocumento(), c2);
+            clientes.put(c3.getDocumento(), c3);
+        } catch (ExcepcionServiciosAlquiler ex) {
+            Logger.getLogger(ServiciosAlquilerItemsStub.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

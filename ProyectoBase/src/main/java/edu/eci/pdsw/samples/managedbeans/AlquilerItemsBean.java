@@ -59,7 +59,7 @@ public class AlquilerItemsBean implements Serializable {
         return totalAlquiler;
     }
     public void setTotalAlquiler() {
-        totalAlquiler=(i.getTarifaxDia()*numDias);
+        totalAlquiler=sp.valorMultaRetrasoxDia()*numDias;
     }
    
 
@@ -72,9 +72,9 @@ public class AlquilerItemsBean implements Serializable {
     public void adicionarAlquiler() throws ExcepcionServiciosAlquiler {
          
          i=sp.consultarItem(id);
-         System.out.println(id);
          setTotalAlquiler();
         System.out.println(numDias);
+        
         sp.registrarAlquilerCliente((java.sql.Date) date, documento,i,numDias);
        
         System.out.println(documento);

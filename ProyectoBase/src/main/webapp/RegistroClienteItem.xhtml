@@ -29,10 +29,11 @@
             <h:outputLabel for="Dias" value="Numero de Dias: " />
             <h:inputText id="Dias" value="#{AlquilerItems.numDias}" required="true"></h:inputText>
             <br/>
-            <h2>Costo Alquiler</h2>
+            <br/>
+            <h>Costo Alquiler</h>
             <br/>
             <h:outputText value="#{AlquilerItems.totalAlquiler}" />
-
+            <br/>
             <p:commandButton value="Registrar" actionListener="#{AlquilerItems.adicionarAlquiler}" update="formularioItem" />
             <p:commandButton update=":formularioItem" value="Regresar" action="RegistroClientes" immediate="true"/>
             <hr/>
