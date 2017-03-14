@@ -183,12 +183,7 @@ public class AlquilerItemsBean implements Serializable {
     public void setSp(ServiciosAlquiler sp) {
         this.sp = sp;
     }
-    public void getMulta(){
-    /**
-     * Pendiente
-     */
     
-    }
     
      public List<Cliente> getClientesExistentes() throws ExcepcionServiciosAlquiler {
         return sp.consultarClientes();

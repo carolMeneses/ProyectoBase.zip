@@ -7,6 +7,7 @@ package edu.eci.pdsw.samples.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import static javax.swing.text.html.HTML.Tag.SELECT;
 
 /**
  *
@@ -59,6 +60,13 @@ public class ItemRentado implements Serializable{
     public long tarifadia(){
      return getItem().getTarifaxDia();
     
+    }
+    public long getPrecioTotal(){
+        long fechaInicialMs = getFechainiciorenta().getTime();
+        long fechaFinalMs = getFechafinrenta().getTime();
+        long diferencia = fechaFinalMs - fechaInicialMs;
+        double dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        return ((long) dias)*tarifadia();
     }
 
    
