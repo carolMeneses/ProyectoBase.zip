@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head></h:head>
+    <h:body>
+        <h:form id="formularioCliente">
+            <h2>Registro del Cliente</h2>
+            <hr/>
+
+            <h:outputLabel for="Nombre" value="Nombre: " />
+            <h:inputText id="Nombre" value="#{AlquilerItems.nombre}" required="true" />
+
+            <h:outputLabel for="Identificacion" value="Identificacion: " />
+            <h:inputText  id="Identificacion" value="#{AlquilerItems.documento}" required="true"></h:inputText>
+
+            <h:outputLabel for="Telefono" value="Telefono: " />
+            <h:inputText id="Teléfono" value="#{AlquilerItems.telefono}" required="true"></h:inputText>
+
+            <h:outputLabel for="Direccion" value="Direccion: " />
+            <h:inputText id="Dirección" value="#{AlquilerItems.direccion}" required="true"></h:inputText>
+
+            <h:outputLabel for="E-mail" value="E-mail " />
+            <h:inputText id="E-mail" value="#{AlquilerItems.email}" required="true"></h:inputText>
+            <p:commandButton value="Registrar" actionListener="#{AlquilerItems.adicionarCliente}" update="formularioCliente" />
+            <hr/>
+
+            <p:separator>
+                <p:dataTable id="formularioCliente" var="informacion"  value="#{AlquilerItems.clientesExistentes}"
+                             selectionMode="single" selection="#{AlquilerItems.clienteNuevo}" rowKey="#{informacion.documento}">>
+                    <p:ajax event="rowSelect" update=":formularioCliente" />
+                    <f:facet name="header">
+                        Lista Clientes
+                    </f:facet>
+                    <p:column headerText="Nombre">
+                        <h:outputLabel value="#{informacion.nombre}"></h:outputLabel>
+                    </p:column>                        
+                    <p:column headerText="Identificación">
+                        <h:outputLabel value="#{informacion.documento}"></h:outputLabel>
+                    </p:column> 
+                    <p:column headerText="Telefono">
+                        <h:outputLabel value="#{informacion.telefono}"></h:outputLabel>                        
+                    </p:column>
+                    <p:column headerText="Dirección">
+                        <h:outputLabel value="#{informacion.direccion}"></h:outputLabel>                        
+                    </p:column>
+                    <p:column headerText="Email">
+                        <h:outputLabel value="#{informacion.email}"></h:outputLabel>                        
+                    </p:column>
+                    <p:column headerText="Vetado">
+                        <h:outputLabel value="#{informacion.vetado}"></h:outputLabel>                        
+                    </p:column>
+                    
+                    <f:facet name="footer">
+                        <p:commandButton update=":formularioCliente" value="Ver" action="RegistroClienteItem" immediate="true"/>
+                           
+                    </f:facet>
+                </p:dataTable>
+            </p:separator>
+        </h:form>  
+    </h:body>
+</html>
