@@ -10,6 +10,7 @@ import edu.eci.pdsw.samples.entities.Item;
 import edu.eci.pdsw.samples.entities.ItemRentado;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.pdsw.samples.services.ServiciosAlquiler;
+import edu.eci.pdsw.samples.services.ServiciosAlquilerFactory;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +36,7 @@ public class AlquilerItemsBean implements Serializable {
     List<Item> itemC;
     List<ItemRentado> items;    
     int id;
-    ServiciosAlquiler sp = ServiciosAlquiler.getInstance();
+    ServiciosAlquiler sp=ServiciosAlquilerFactory.getInstance().getServiciosAlquiler();
     Item i;
     int numDias;
     Date date;

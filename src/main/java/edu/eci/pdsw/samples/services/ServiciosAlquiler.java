@@ -4,6 +4,7 @@ import edu.eci.pdsw.samples.entities.Cliente;
 import edu.eci.pdsw.samples.entities.Item;
 import edu.eci.pdsw.samples.entities.ItemRentado;
 import edu.eci.pdsw.samples.entities.TipoItem;
+import edu.eci.pdsw.samples.services.impl.ServiciosAlquilerItemsImpl;
 import java.sql.Date;
 import java.util.List;
 
@@ -13,15 +14,16 @@ import java.util.List;
  */
 public abstract class ServiciosAlquiler {
 
-    private static ServiciosAlquiler instance = new ServiciosAlquilerItemsStub();
+    
+    static ServiciosAlquilerItemsImpl instance = new ServiciosAlquilerItemsImpl();
 
-    public static ServiciosAlquiler getInstance() throws RuntimeException {
+   public static ServiciosAlquiler getInstance() throws RuntimeException {
         return instance;
     }
 
     protected ServiciosAlquiler() {
 
-    }
+   }
 
     public abstract int valorMultaRetrasoxDia();
 
