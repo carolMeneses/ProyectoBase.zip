@@ -24,8 +24,12 @@ public class MyBATISClienteDao  implements ClienteDAO{
     
     @Override
     public void save(Cliente c) throws PersistenceException {
-        cm.insertarCliente(c);
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            cm.insertarCliente(c);
+        }catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al registrar el cliente "+c.toString(),e);
+        }      
+        
     }
 
    @Override

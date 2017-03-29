@@ -13,6 +13,8 @@ import static com.google.inject.Guice.createInjector;
 import com.google.inject.Injector;
 import edu.eci.pdsw.sampleprj.dao.ClienteDAO;
 import edu.eci.pdsw.sampleprj.dao.ItemDAO;
+import edu.eci.pdsw.sampleprj.dao.ItemRentadoDAO;
+import edu.eci.pdsw.sampleprj.dao.TipoItemDAO;
 import edu.eci.pdsw.sampleprj.dao.mybatis.MyBATISClienteDao;
 import edu.eci.pdsw.sampleprj.dao.mybatis.MyBATISItemDAO;
 import edu.eci.pdsw.samples.entities.Item;
@@ -80,6 +82,36 @@ public class ServiciosAlquilerFactory {
         return instance;
     }
 
+    public ClienteDAO getClienteDAO(){
+        return injector.getInstance(ClienteDAO.class);
+    }
     
+    public ItemDAO getItemDAO(){
+        return injector.getInstance(ItemDAO.class);
+    }
+    
+    public ItemRentadoDAO getItemRentadoDAO(){
+        return injector.getInstance(ItemRentadoDAO.class);
+    }
+    
+    public TipoItemDAO getTipoItemDAO(){
+        return injector.getInstance(TipoItemDAO.class);
+    }    
+    
+    public ClienteDAO getClienteDAOTesting(){
+        return testInjector.getInstance(ClienteDAO.class);
+    }
+    
+    public ItemDAO getItemDAOTesting(){
+        return testInjector.getInstance(ItemDAO.class);
+    }
+    
+    public ItemRentadoDAO getItemRentadoDAOTesting(){
+        return testInjector.getInstance(ItemRentadoDAO.class);
+    }
+    
+    public TipoItemDAO getTipoItemDAOTesting(){
+        return testInjector.getInstance(TipoItemDAO.class);
+    }
     
 }
