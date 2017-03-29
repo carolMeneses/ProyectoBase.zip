@@ -21,7 +21,7 @@ import javax.faces.bean.SessionScoped;
  *
  * @Meneses-Pinzon
  */
-@ManagedBean(name = "AlquilerItems")
+//@ManagedBean(name = "AlquilerItems")
 @SessionScoped
 public class AlquilerItemsBean implements Serializable {
 
