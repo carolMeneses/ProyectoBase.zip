@@ -14,6 +14,7 @@ import edu.eci.pdsw.samples.entities.Item;
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.pdsw.samples.entities.TipoItem;
 import java.sql.SQLException;
+import java.util.List;
 
 
 
@@ -48,5 +49,13 @@ public class MyBATISItemDAO implements ItemDAO{
         
         
     }
+
+    @Override
+    public List<Item> loadItemsDisponibles() throws PersistenceException {
+        return itemMapper.getItems();
+    }
+    
+   
+    
     
 }

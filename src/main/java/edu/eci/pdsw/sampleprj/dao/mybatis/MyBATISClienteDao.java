@@ -10,8 +10,11 @@ import edu.eci.pdsw.sampleprj.dao.ClienteDAO;
 import edu.eci.pdsw.sampleprj.dao.PersistenceException;
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper;
+import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemRentadoMapper;
 import edu.eci.pdsw.samples.entities.Cliente;
 import edu.eci.pdsw.samples.entities.Item;
+import edu.eci.pdsw.samples.entities.ItemRentado;
+import java.util.List;
 
 /**
  *
@@ -20,6 +23,8 @@ import edu.eci.pdsw.samples.entities.Item;
 public class MyBATISClienteDao  implements ClienteDAO{
     @Inject
     private ClienteMapper cm;
+    @Inject
+    private ItemRentadoMapper ir;
     
     
     @Override
@@ -31,6 +36,7 @@ public class MyBATISClienteDao  implements ClienteDAO{
         }      
         
     }
+  
 
    @Override
    public Cliente load(long id) throws PersistenceException {
@@ -41,6 +47,24 @@ public class MyBATISClienteDao  implements ClienteDAO{
             throw new PersistenceException("Error al consultar el cliente "+id,e);
         }
         
+    }
+   @Override
+   public List<ItemRentado> loadItemRentado(long id ) throws PersistenceException {
+       try{
+           return cm.getItemsRentados(id);
+       }
+        catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al consultar el cliente "+id,e);
+        }
+   }
+
+    @Override
+    public List<Cliente> loadClientes() throws PersistenceException {
+        try{
+            return cm.getClientes();
+        }catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al consultar los clientes ",e);
+        }
     }
 
   

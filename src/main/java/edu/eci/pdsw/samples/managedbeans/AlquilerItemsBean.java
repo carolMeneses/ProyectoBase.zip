@@ -36,12 +36,14 @@ public class AlquilerItemsBean implements Serializable {
     List<Item> itemC;
     List<ItemRentado> items;    
     int id;
-    ServiciosAlquiler sp=ServiciosAlquilerFactory.getInstance().getServiciosAlquiler();
+    ServiciosAlquiler sp;
     Item i;
-    int numDias;
+    int numdias;
     Date date;
+    Date fin;
     
     public AlquilerItemsBean() {
+        this.sp = ServiciosAlquilerFactory.getInstance().getServiciosAlquiler();
         nombre = "";
         documento = 0;
         telefono = "";
@@ -51,7 +53,7 @@ public class AlquilerItemsBean implements Serializable {
         ClienteNuevo = new Cliente(nombre, documento, telefono, direccion, email);
         itemC=sp.consultarItemsDisponibles();
         i=itemC.get(0);
-        numDias=0;
+        numdias=0;
         date=new java.util.Date(); 
         totalAlquiler=0;
     }
@@ -60,7 +62,7 @@ public class AlquilerItemsBean implements Serializable {
         return totalAlquiler;
     }
     public void setTotalAlquiler() {
-        totalAlquiler=sp.valorMultaRetrasoxDia()*numDias;
+        totalAlquiler=sp.valorMultaRetrasoxDia()*numdias;
     }
    
 
@@ -74,13 +76,13 @@ public class AlquilerItemsBean implements Serializable {
          
          i=sp.consultarItem(id);
          setTotalAlquiler();
-        System.out.println(numDias);
+        System.out.println(numdias);
         
-        sp.registrarAlquilerCliente((java.sql.Date) date, documento,i,numDias);
+        sp.registrarAlquilerCliente(documento, i, (java.sql.Date) date, numdias);
        
         System.out.println(documento);
         System.out.println(i);
-        System.out.println(numDias);
+        System.out.println(numdias);
         System.out.println(totalAlquiler);
         
         
@@ -98,11 +100,11 @@ public class AlquilerItemsBean implements Serializable {
     }
 
     public int getNumDias() {
-        return numDias;
+        return numdias;
     }
 
     public void setNumDias(int numDias) {
-        this.numDias = numDias;
+        this.numdias = numDias;
     }
 
     public Date getDate() {

@@ -81,7 +81,7 @@ public abstract class ServiciosAlquiler {
      * un item, o si el mismo ya esta alquilado
      * 
      */
-    public abstract void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler;
+    public abstract void registrarAlquilerCliente(long docu, Item item,Date date, int numdias) throws ExcepcionServiciosAlquiler;
 
     /**
      * @obj registrar un cliente en el sistema

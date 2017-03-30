@@ -3,23 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.pdsw.sampleprj.dao;
+package edu.eci.pdsw.sampleprj.dao.mybatis.mappers;
 
-import edu.eci.pdsw.samples.entities.Cliente;
 import edu.eci.pdsw.samples.entities.Item;
 import edu.eci.pdsw.samples.entities.ItemRentado;
 import java.util.List;
 
 /**
  *
- * @author 2095957
+ * @author estudiante
  */
-public interface ItemRentadoDAO {
-
-    public void save(ItemRentado it) throws PersistenceException;
-
-    public ItemRentado load(int id) throws PersistenceException;
+public interface ItemRentadoMapper {
+    public List<ItemRentado> getItemsRentados();     
     
-    
-
 }

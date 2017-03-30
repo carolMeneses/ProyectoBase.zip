@@ -1,6 +1,7 @@
 package edu.eci.pdsw.sampleprj.dao.mybatis.mappers;
 
 import edu.eci.pdsw.samples.entities.Cliente;
+import edu.eci.pdsw.samples.entities.ItemRentado;
 import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -35,7 +36,9 @@ public interface ClienteMapper {
 
     public void agregarItemrentadoACliente(@Param("id")int i,@Param("documento")int i0, @Param("idi")int i1, @Param("fechainic")Date fechai,@Param("fechafinal") Date fechaf);
 
-  
+    public List<ItemRentado>getItemsRentados (@Param("documento") long id);
+    
+    public List<Cliente> getClientes();
     
     
 }

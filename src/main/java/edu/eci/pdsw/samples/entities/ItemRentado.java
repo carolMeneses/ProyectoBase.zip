@@ -15,18 +15,18 @@ import static javax.swing.text.html.HTML.Tag.SELECT;
  */
 public class ItemRentado implements Serializable{
    
-    private int id;
+    private long id;
     private Item item;
     private Date fechainiciorenta;
-    private Date fechafinrenta;
+    private int numdias;
     
 
-    public ItemRentado(int id,Item item, Date fechainiciorenta, Date fechafinrenta) {
+    public ItemRentado(long id,Item item, Date fechainiciorenta, int numdias) {
         
         this.id = id;     
         this.item = item;
         this.fechainiciorenta = fechainiciorenta;
-        this.fechafinrenta = fechafinrenta;
+        this.numdias = numdias;
     }
     
     
@@ -34,7 +34,7 @@ public class ItemRentado implements Serializable{
     public ItemRentado() {
     }
 
-     public int getId() {
+     public long getId() {
         return id;
     }
 
@@ -58,28 +58,25 @@ public class ItemRentado implements Serializable{
         this.fechainiciorenta = fechainiciorenta;
     }
 
-    public Date getFechafinrenta() {
-        return fechafinrenta;
+    public int numDias() {
+        return numdias;
     }
 
-    public void setFechafinrenta(Date fechafinrenta) {
-        this.fechafinrenta = fechafinrenta;
+    public void setNumDias(int numdias) {
+        this.numdias = numdias;
     }
     public long tarifadia(){
      return getItem().getTarifaxDia();
     
     }
     public long getPrecioTotal(){
-        long fechaInicialMs = getFechainiciorenta().getTime();
-        long fechaFinalMs = getFechafinrenta().getTime();
-        long diferencia = fechaFinalMs - fechaInicialMs;
-        double dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-        return ((long) dias)*tarifadia();
+       
+        return ((long) numdias)*tarifadia();
     }
 
       @Override
     public String toString() {
-        return "ItemRentado{" + "id=" + id + ", item=" + item + ", fechainiciorenta=" + fechainiciorenta + ", fechafinrenta=" + fechafinrenta + '}';
+        return "ItemRentado{" + "id=" + id + ", item=" + item + ", fechainiciorenta=" + fechainiciorenta + ", numdias=" + numdias + '}';
     }
 
 }
